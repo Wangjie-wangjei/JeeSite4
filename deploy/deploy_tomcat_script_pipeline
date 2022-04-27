@@ -1,11 +1,29 @@
 node('master') {
     stage('同步源码') {
-            git([url: 'git@gitee.com:11547299/jeesite4.git', branch: '${branch}'])
+            git([url: 'git@github.com:Wangjie-wangjei/JeeSite4.git', branch: '${branch}'])
     }
 
     stage('maven编译打包') {
         sh '''
             . ~/.bash_profile
+
+            exportt pwd='pwd'
+            export os_type='uname'
+            cd web/src/main/resources/config
+            if [["${os_type}" == "Darwin"]]; then
+                sed -i "" "s/mysql_ip/${mysql_ip/g}" application.yml
+                sed -i "" "s/mysql_port/${mysql_port/g}" application.yml
+                sed -i "" "s/mysql_user/${mysql_user/g}" application.yml
+                sed -i "" "s/mysql_pwd/${mysql_pwd/g}" application.yml
+
+            else
+                sed -i "s/mysql_ip/${mysql_ip/g}" application.yml
+                sed -i "s/mysql_port/${mysql_port/g}" application.yml
+                sed -i "s/mysql_user/${mysql_user/g}" application.yml
+                sed -i "s/mysql_pwd/${mysql_pwd/g}" application.yml
+
+            fi
+
             
             cd $pwd/root
             mvn clean install -Dmaven.test.skip=true
