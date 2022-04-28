@@ -3,24 +3,6 @@ node('master') {
             git([url: 'git@github.com:Wangjie-wangjei/JeeSite4.git', branch: '${branch}'])
     }
 
-    tools {
-            nodejs "nodejs"
-        }
-
-        stages {
-            stage('Dependency') {
-                steps {
-                    sh 'npm install'
-                }
-            }
-            }
-            stage('Build') {
-                steps {
-                    sh 'npm run clean'
-                    sh 'npm run build'
-                }
-                }
-
     stage('maven编译打包') {
         sh '''
             . ~/.bash_profile
