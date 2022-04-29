@@ -7,7 +7,7 @@ node('master') {
         sh '''
                     . ~/.bash_profile
 
-                    cd $pwd/root
+                    cd root/bin
                     mvn clean install -Dmaven.test.skip=true
 
                     cd $pwd/web
