@@ -7,7 +7,7 @@ node('master') {
         sh '''
             . ~/.bash_profile
 
-            exportt pwd='pwd'
+            export pwd='pwd'
             export os_type='uname'
             cd web/src/main/resources/config
             if [["${os_type}" == "Darwin"]]; then
