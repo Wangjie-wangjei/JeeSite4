@@ -8,7 +8,7 @@ node('master') {
             . ~/.bash_profile
 
             export pwd='pwd'
-            export os_type='uname'
+            export os_type='user'
             cd web/src/main/resources/config
             if [["${os_type}" == "Darwin"]]; then
                 sed -i "" "s/mysql_ip/${mysql_ip/g}" application.yml
